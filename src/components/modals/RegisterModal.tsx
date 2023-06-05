@@ -39,7 +39,7 @@ const RegisterModal: React.FC = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true)
-    axios.post('/api/register', data)
+    axios.post('/api/register', data) // api is a route that is in app folder
       .then(() => {
         registerModal.onClose()
       })
