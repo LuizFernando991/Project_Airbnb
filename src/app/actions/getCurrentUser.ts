@@ -9,7 +9,7 @@ export async function getSession() {
   return await getServerSession(authOptions)
 }
 
-export default async function getCurrentUser(): Promise<User | null > {
+export default async function getCurrentUser() {
   try {
     const session = await getSession()
 
@@ -27,6 +27,9 @@ export default async function getCurrentUser(): Promise<User | null > {
 
     return {
       ...currentUser,
+      createdAt: currentUser.createdAt.toISOString(),
+      updatedAt: currentUser.updatedAt.toISOString(),
+      emailVerified: currentUser.emailVerified?.toISOString() || null,
       hashedPassword: null
     }
     
