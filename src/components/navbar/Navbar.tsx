@@ -1,6 +1,7 @@
 'use client'
 
 import Container from '../Container'
+import Categories from './Categories'
 import Logo from './Logo'
 import Search from './Search'
 import UserMenu from './UserMenu'
@@ -28,12 +29,19 @@ const Navbar: React.FC<INavbarProps> = ({
               md:gap-0
             '
           >
-            <Logo />
-            <Search />
-            <UserMenu currentUser={currentUser}/>
+            <div className='flex-1'>
+              <Logo />
+            </div>
+            <div className='flex-1 flex justify-center'>
+              <Search />
+            </div>
+            <div className='flex-1 flex justify-end'>
+              <UserMenu currentUser={currentUser}/>
+            </div>
           </div>
         </Container>
       </div>
+      <Categories />
     </header>
   )
 }
