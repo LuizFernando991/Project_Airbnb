@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { signIn } from 'next-auth/react'
 import axios from 'axios'
 import Modal from './Modal'
@@ -17,11 +17,13 @@ import {
 import { toast } from 'react-hot-toast'
 
 import useRegisterModal from '@/hooks/useRegisterModal'
+import useLoginModal from '@/hooks/useLoginModal'
 
 const RegisterModal: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const registerModal = useRegisterModal()
+  const loginModal = useLoginModal()
 
   const {
     register,
@@ -50,6 +52,11 @@ const RegisterModal: React.FC = () => {
         setIsLoading(false)
       })
   }
+
+  const toggle = useCallback(() => {
+    loginModal.onOpen()
+    registerModal.onClose()
+  }, [loginModal, registerModal])
 
   const bodyContent = (
     <div className='flex flex-col gap-4'>
@@ -113,7 +120,7 @@ const RegisterModal: React.FC = () => {
             Already have an account?
           </div>
           <div
-            onClick={registerModal.onClose}
+            onClick={toggle}
             className='text-neutral-800 cursor-pointer hover-underline'
           >
             Log In
