@@ -1,9 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { signIn } from 'next-auth/react'
+import { signIn, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import axios from 'axios'
 import Modal from './Modal'
 import Heading from '../Heading'
 import Input from '../inputs/Input'
@@ -94,13 +93,13 @@ const LoginModal: React.FC = () => {
         outline
         label='Continue with Google'
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => signIn('google')}
       />
       <Button
         outline
         label='Continue with Github'
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn('github')}
       />
       <div
         className='

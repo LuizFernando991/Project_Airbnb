@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { signIn } from 'next-auth/react'
 import axios from 'axios'
 import Modal from './Modal'
 import Heading from '../Heading'
@@ -27,8 +28,7 @@ const RegisterModal: React.FC = () => {
     handleSubmit,
     formState: {
       errors,
-    },
-    getValues
+    }
   } = useForm<FieldValues>({
     defaultValues: {
       name: '',
@@ -92,13 +92,13 @@ const RegisterModal: React.FC = () => {
         outline
         label='Continue with Google'
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => signIn('google')}
       />
       <Button
         outline
         label='Continue with Github'
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn('github')}
       />
       <div
         className='
