@@ -7,6 +7,7 @@ import Avatar from '../Avatar'
 import MenuItem from './MenuItem'
 import useRegisterModal from '@/hooks/useRegisterModal'
 import useLoginModal from '@/hooks/useLoginModal'
+import useRentModel from '@/hooks/useRentModel'
 
 import { SafeUser } from '@/types'
 
@@ -18,6 +19,7 @@ const UserMenu: React.FC<IUserMenuProps> = ({
   currentUser
 }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const rentModel = useRentModel()
   const registerModal = useRegisterModal()
   const loginModal = useLoginModal()
 
@@ -25,11 +27,20 @@ const UserMenu: React.FC<IUserMenuProps> = ({
     setIsOpen(value => !value)
   }, [])
 
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      loginModal.onOpen()
+      return
+    }
+
+    rentModel.onOpen()
+  }, [loginModal, rentModel, currentUser])
+
   return (
     <div className='relative'>
       <div className='flex flex-row items-center gap-3'>
         <div
-          onClick={() => {}}
+          onClick={onRent}
           className='
             hidden
             md:block
@@ -90,7 +101,7 @@ const UserMenu: React.FC<IUserMenuProps> = ({
                   <MenuItem onClick={() => {}} label='My trips' />
                   <MenuItem onClick={() => {}} label='My favorites' />
                   <MenuItem onClick={() => {}} label='My reservations' />
-                  <MenuItem onClick={() => {}} label='Airbnb my home' />
+                  <MenuItem onClick={() => rentModel.onOpen()} label='Airbnb my home' />
                   <hr />
                   <MenuItem onClick={() => signOut()} label='Logout' />
                 </>
