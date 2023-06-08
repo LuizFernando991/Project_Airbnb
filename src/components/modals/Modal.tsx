@@ -62,7 +62,8 @@ const Modal: React.FC<IModalProps> = ({
     if (disabled || !secondaryAction) {
       return
     }
-
+    
+    secondaryAction()
   }, [disabled, secondaryAction])
 
   if (!isOpen) {
