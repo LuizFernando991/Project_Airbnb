@@ -11,32 +11,29 @@ interface INavbarProps {
   currentUser?: SafeUser | null
 }
 
-const Navbar: React.FC<INavbarProps> = ({
-  currentUser
-}) => {
-
+const Navbar: React.FC<INavbarProps> = ({ currentUser }) => {
   return (
-    <header className='fixed w-full bg-white z-10 shadow-sm'>
-      <div className='py-4 border-b-[1px]'>
+    <header className="fixed w-full bg-white z-10 shadow-sm">
+      <div className="py-4 border-b-[1px]">
         <Container>
           <div
-            className='
+            className="
               flex
               flex-row
               items-center
               justify-between
               gap-3
               md:gap-0
-            '
+            "
           >
-            <div className='flex-1'>
+            <div className="flex-1">
               <Logo />
             </div>
-            <div className='flex-1 flex justify-center'>
+            <div className="flex-1 flex justify-center">
               <Search />
             </div>
-            <div className='flex-1 flex justify-end'>
-              <UserMenu currentUser={currentUser}/>
+            <div className="flex-1 flex justify-end">
+              <UserMenu currentUser={currentUser} />
             </div>
           </div>
         </Container>

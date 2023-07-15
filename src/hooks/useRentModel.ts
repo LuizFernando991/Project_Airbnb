@@ -1,4 +1,3 @@
-
 import { create } from 'zustand'
 
 interface IRentModalStore {
@@ -9,8 +8,8 @@ interface IRentModalStore {
 
 const useRentModel = create<IRentModalStore>((set) => ({
   isOpen: false,
-  onOpen: () => set({ isOpen: true}),
-  onClose: () => set({ isOpen: false})
+  onOpen: () => set({ isOpen: true }),
+  onClose: () => set({ isOpen: false }),
 }))
 
 export default useRentModel

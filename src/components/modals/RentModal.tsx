@@ -22,11 +22,10 @@ enum STEPS {
   INFO = 2,
   IMAGES = 3,
   DESCRIPTION = 4,
-  PRICE = 5
+  PRICE = 5,
 }
 
 const RentModal: React.FC = () => {
-
   const [step, setStep] = useState(STEPS.CATEGORY)
   const [isLoading, setIsLoading] = useState(false)
   const rentModal = useRentModel()
@@ -37,10 +36,8 @@ const RentModal: React.FC = () => {
     handleSubmit,
     setValue,
     watch,
-    formState: {
-      errors,
-    },
-    reset
+    formState: { errors },
+    reset,
   } = useForm<FieldValues>({
     defaultValues: {
       category: '',
@@ -51,8 +48,8 @@ const RentModal: React.FC = () => {
       imageSrc: '',
       price: 1,
       title: '',
-      desciption: ''
-    }
+      desciption: '',
+    },
   })
 
   // useForm callback when changes
@@ -63,17 +60,20 @@ const RentModal: React.FC = () => {
   const bathroomCount = watch('bathroomCount')
   const imageSrc = watch('imageSrc')
 
+  const Map = useMemo(
+    () =>
+      dynamic(() => import('../Map'), {
+        ssr: false,
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }),
+    [location],
+  )
 
-  const Map = useMemo(() => dynamic(() => import('../Map'), {
-    ssr: false
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [location])
-  
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldValidate: true,
       shouldDirty: true,
-      shouldTouch: true
+      shouldTouch: true,
     })
   }
 
@@ -92,7 +92,8 @@ const RentModal: React.FC = () => {
 
     setIsLoading(true)
 
-    axios.post('/api/listings', data)
+    axios
+      .post('/api/listings', data)
       .then(() => {
         toast.success('Listing Created!')
         router.refresh()
@@ -122,35 +123,32 @@ const RentModal: React.FC = () => {
     return 'Back'
   }, [step])
 
-
   let bodyContent = (
     <div
-      className='
+      className="
         flex
         flex-col
         gap-8
-      '
+      "
     >
       <Heading
-        title='Which of these best describes your place?'
-        subtitle='Chose a category'
+        title="Which of these best describes your place?"
+        subtitle="Chose a category"
       />
       <div
-        className='
+        className="
           grid
           grid-cols-1
           md:grid-cols-2
           gap-3
           max-h-[50vh]
           overflow-y-auto
-        '
+        "
       >
         {categories.map((cat) => (
-          <div key={cat.label} className='col-span-1'>
-            <CategoryInput 
-              onClick={
-                (cat) => setCustomValue('category', cat)
-              }
+          <div key={cat.label} className="col-span-1">
+            <CategoryInput
+              onClick={(cat) => setCustomValue('category', cat)}
               selected={category === cat.label}
               label={cat.label}
               icon={cat.icon}
@@ -164,49 +162,49 @@ const RentModal: React.FC = () => {
   if (step === STEPS.LOCATION) {
     bodyContent = (
       <div
-        className='
+        className="
           flex
           flex-col
           gap-8
-        '
+        "
       >
-        <Heading 
-          title='Where is yout place located?'
-          subtitle='Help guests find you!'
+        <Heading
+          title="Where is yout place located?"
+          subtitle="Help guests find you!"
         />
-        <CountrySelect 
+        <CountrySelect
           onChange={(value) => setCustomValue('location', value)}
           value={location}
         />
-        <Map center={location?.latlng}/>
+        <Map center={location?.latlng} />
       </div>
     )
   }
 
   if (step === STEPS.INFO) {
     bodyContent = (
-      <div className='flex flex-col gap-8'>
-        <Heading 
-          title='Share some basics about your place'
-          subtitle='What amenities do you have?'
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Share some basics about your place"
+          subtitle="What amenities do you have?"
         />
         <Counter
-          title='Guests'
-          subtitle='How many guests do you allow?'
+          title="Guests"
+          subtitle="How many guests do you allow?"
           value={guestCount}
           onChange={(value) => setCustomValue('guestCount', value)}
         />
         <hr />
         <Counter
-          title='Rooms'
-          subtitle='How many rooms do you have?'
+          title="Rooms"
+          subtitle="How many rooms do you have?"
           value={roomCount}
           onChange={(value) => setCustomValue('roomCount', value)}
         />
         <hr />
         <Counter
-          title='Bathrooms'
-          subtitle='How many bathrooms do you have?'
+          title="Bathrooms"
+          subtitle="How many bathrooms do you have?"
           value={bathroomCount}
           onChange={(value) => setCustomValue('bathroomCount', value)}
         />
@@ -216,10 +214,10 @@ const RentModal: React.FC = () => {
 
   if (step === STEPS.IMAGES) {
     bodyContent = (
-      <div className='flex flex-col gap-8'>
-        <Heading 
-          title='Add a photo of your place'
-          subtitle='Show to guests what your place looks like!'
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Add a photo of your place"
+          subtitle="Show to guests what your place looks like!"
         />
         <ImageUpload
           value={imageSrc}
@@ -231,14 +229,14 @@ const RentModal: React.FC = () => {
 
   if (step === STEPS.DESCRIPTION) {
     bodyContent = (
-      <div className='flex flex-col gap-8'>
-        <Heading 
-          title='How would you describe your place?'
-          subtitle='Short and sweet works best!'
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="How would you describe your place?"
+          subtitle="Short and sweet works best!"
         />
         <Input
-          id='title'
-          label='title'
+          id="title"
+          label="title"
           disabled={isLoading}
           register={register}
           errors={errors}
@@ -246,8 +244,8 @@ const RentModal: React.FC = () => {
         />
         <hr />
         <Input
-          id='description'
-          label='description'
+          id="description"
+          label="description"
           disabled={isLoading}
           register={register}
           errors={errors}
@@ -255,21 +253,20 @@ const RentModal: React.FC = () => {
         />
       </div>
     )
-
   }
-  
+
   if (step === STEPS.PRICE) {
     bodyContent = (
-      <div className='flex flex-col gap-8'>
-        <Heading 
-          title='Now, set your price'
-          subtitle='How much do you charge per night?'
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Now, set your price"
+          subtitle="How much do you charge per night?"
         />
         <Input
-          id='price'
-          label='price'
+          id="price"
+          label="price"
           formatPrice
-          type='number'
+          type="number"
           disabled={isLoading}
           register={register}
           errors={errors}
@@ -281,7 +278,7 @@ const RentModal: React.FC = () => {
 
   return (
     <Modal
-      title='Airbnb your home'
+      title="Airbnb your home"
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
       onSubmit={handleSubmit(onSubmit)}

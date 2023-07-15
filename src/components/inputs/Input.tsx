@@ -1,12 +1,8 @@
 'use client'
 
-import { 
-  FieldValues,
-  UseFormRegister,
-  FieldErrors 
-} from "react-hook-form"
+import { FieldValues, UseFormRegister, FieldErrors } from 'react-hook-form'
 
-import { BiDollar } from "react-icons/bi"
+import { BiDollar } from 'react-icons/bi'
 
 interface IIpuntProps {
   id: string
@@ -27,26 +23,26 @@ const Input: React.FC<IIpuntProps> = ({
   formatPrice,
   register,
   required,
-  errors
+  errors,
 }) => {
   return (
-    <div className='w-full relative'>
+    <div className="w-full relative">
       {formatPrice && (
         <BiDollar
           size={24}
-          className='
+          className="
             text-neutral-700
             absolute
             top-5
             left-2
-          '
+          "
         />
       )}
       <input
         id={id}
         disabled={disabled}
         {...register(id, { required })}
-        placeholder=' '
+        placeholder=" "
         type={type}
         className={`
           peer

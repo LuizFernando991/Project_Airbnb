@@ -9,7 +9,7 @@ import ToasterProvider from '@/providers/ToasterProvider'
 import getCurrentUser from '@/actions/getCurrentUser'
 
 const font = Nunito({
-  subsets: ['latin']
+  subsets: ['latin'],
 })
 
 export const metadata = {
@@ -28,13 +28,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <ToasterProvider />
-          <RegisterModal />
-          <LoginModal />
-          <RentModal />
-          <Navbar currentUser={currentUser} />
-          <div className='pb-20 pt-28'>
-            {children}
-          </div>
+        <RegisterModal />
+        <LoginModal />
+        <RentModal />
+        <Navbar currentUser={currentUser} />
+        <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
   )

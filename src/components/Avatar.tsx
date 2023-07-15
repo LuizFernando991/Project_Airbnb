@@ -8,11 +8,11 @@ interface IAvatarProps {
 
 const Avatar: React.FC<IAvatarProps> = ({ src }) => {
   return (
-    <Image 
-      alt='Avatar'
-      className='rounded-full'
-      height='30'
-      width='30'
+    <Image
+      alt="Avatar"
+      className="rounded-full"
+      height="30"
+      width="30"
       src={src || '/images/placeholder.jpg'}
     />
   )

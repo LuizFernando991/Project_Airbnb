@@ -11,21 +11,21 @@ const Categories: React.FC = () => {
   const category = params?.get('category')
   const pathname = usePathname()
 
-  if(!(pathname === '/')) {
+  if (!(pathname === '/')) {
     return null
   }
 
   return (
     <Container>
       <div
-        className='
+        className="
           pt-4
           flex
           flex-row
           items-center
           justify-between
           overflow-x-auto
-        '
+        "
       >
         {categories.map((cat) => (
           <CategoryBox

@@ -16,7 +16,7 @@ const CategoryBox: React.FC<ICategoryBoxProps> = ({
   label,
   description,
   selected,
-  icon: Icon
+  icon: Icon,
 }) => {
   const router = useRouter()
 
@@ -26,27 +26,29 @@ const CategoryBox: React.FC<ICategoryBoxProps> = ({
     let currentQuery = {}
 
     if (params) {
-      currentQuery = queryString.parse(params.toString()) //to not remove all params
+      currentQuery = queryString.parse(params.toString()) // to not remove all params
     }
 
     const updatedQuery: any = {
       ...currentQuery,
-      category: label
+      category: label,
     }
 
-    if (params?.get('category') === label){
+    if (params?.get('category') === label) {
       delete updatedQuery.category
     }
 
-    const url = queryString.stringifyUrl({
-      url: '/',
-      query: updatedQuery
-    }, { skipNull: true })
+    const url = queryString.stringifyUrl(
+      {
+        url: '/',
+        query: updatedQuery,
+      },
+      { skipNull: true },
+    )
 
     router.push(url)
   }, [label, params, router])
 
-  
   return (
     <div
       onClick={handleClick}
@@ -66,9 +68,7 @@ const CategoryBox: React.FC<ICategoryBoxProps> = ({
       `}
     >
       <Icon size={26} />
-      <div className='font-medium text-sm'>
-        {label}
-      </div>
+      <div className="font-medium text-sm">{label}</div>
     </div>
   )
 }

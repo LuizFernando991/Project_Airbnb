@@ -1,14 +1,14 @@
 'use client'
 
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { useCallback, useMemo } from "react"
-import { Listing, Reservation } from "@prisma/client"
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import { useCallback, useMemo } from 'react'
+import { Listing, Reservation } from '@prisma/client'
 import { format } from 'date-fns'
-import { SafeUser } from "@/types"
-import useCountries from "@/hooks/useCountries"
-import HeartButton from "../HeartButton"
-import Button from "../Button"
+import { SafeUser } from '@/types'
+import useCountries from '@/hooks/useCountries'
+import HeartButton from '../HeartButton'
+import Button from '../Button'
 
 interface IListingCardProps {
   currentUser?: SafeUser | null
@@ -27,9 +27,8 @@ const ListingCard: React.FC<IListingCardProps> = ({
   onAction,
   disabled,
   actionId = '',
-  actionLabel
+  actionLabel,
 }) => {
-
   const router = useRouter()
   const { getByValue } = useCountries()
 
@@ -44,8 +43,9 @@ const ListingCard: React.FC<IListingCardProps> = ({
       }
 
       onAction?.(actionId)
-    }
-  , [onAction, actionId, disabled])
+    },
+    [onAction, actionId, disabled],
+  )
 
   const price = useMemo(() => {
     if (reservation) {
@@ -53,7 +53,7 @@ const ListingCard: React.FC<IListingCardProps> = ({
     }
 
     return data.price
-  } , [reservation, data.price])
+  }, [reservation, data.price])
 
   const reservationDate = useMemo(() => {
     if (!reservation) {
@@ -62,93 +62,84 @@ const ListingCard: React.FC<IListingCardProps> = ({
 
     const start = new Date(reservation.startDate)
     const end = new Date(reservation.endDate)
-    
+
     return `${format(start, 'PP')} - ${format(end, 'PP')}`
-  }, [reservation]) 
+  }, [reservation])
 
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
-      className='
+      className="
         col-span-1
         cursor-pointer
         group
-      '
+      "
     >
       <div
-        className='
+        className="
           flex
           flex-col
           gap-2
           w-full
-        '
+        "
       >
         <div
-          className='
+          className="
             aspect-square
             w-full
             relative
             overflow-hidden
             rounded-xl
-          '
+          "
         >
-          <Image 
-            alt='listings'
+          <Image
+            alt="listings"
             src={data.imageSrc}
             fill
-            className='
+            className="
               object-cover
               h-full
               w-gull
               group-hover:scale-110
               transition
-            '
+            "
           />
           <div
-            className='
+            className="
               absolute
               top-3
               right-3
-            '
+            "
           >
-            <HeartButton
-              listingId={data.id}
-              currentUser={currentUser}
-            />
+            <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
         <div
-          className='
+          className="
             font-semibold
             text-lg
-          '
+          "
         >
           {location?.region}, {location?.label}
         </div>
         <div
-          className='
+          className="
             font-light
             text-neutral-500
-          '
+          "
         >
           {reservationDate || data.category}
         </div>
         <div
-          className='
+          className="
             flex
             flex-row
             items-center
             gap-1
-          '
+          "
         >
-          <div className='font-semibold'>
-            $ {price}
-          </div>
-          {!reservation && (
-            <div className='font-light'>
-              night
-            </div>
-          )}
+          <div className="font-semibold">$ {price}</div>
+          {!reservation && <div className="font-light">night</div>}
         </div>
         {onAction && actionLabel && (
           <Button

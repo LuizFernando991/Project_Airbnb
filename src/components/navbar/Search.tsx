@@ -5,7 +5,7 @@ import { BiSearch } from 'react-icons/bi'
 const Search: React.FC = () => {
   return (
     <div
-      className='
+      className="
         border-[1px]
         w-full
         md:w-auto
@@ -15,27 +15,27 @@ const Search: React.FC = () => {
         hover:shadow-md
         transition
         cursor-pointer
-      '
+      "
     >
-      <div 
-        className='
+      <div
+        className="
           flex
           flex-row
           items-center
           justify-between
-        '
+        "
       >
         <div
-          className='
+          className="
             text-sm
             font-semibold
             px-6
-          '
+          "
         >
           Anywhere
         </div>
         <div
-          className='
+          className="
             hidden
             sm:block
             text-sm
@@ -44,12 +44,12 @@ const Search: React.FC = () => {
             border-x-[1px]
             flex-1
             text-center
-          '
+          "
         >
           Any Week
         </div>
         <div
-          className='
+          className="
             text-sm
             pl-6
             pr-2
@@ -58,24 +58,24 @@ const Search: React.FC = () => {
             flex-row
             items-center
             gap-3
-          '
+          "
         >
           <div
-            className='
+            className="
               hidden
               sm:block
 
-            '
+            "
           >
             Add Guests
           </div>
           <div
-            className='
+            className="
               p-2
               bg-rose-500
               rounded-full
               text-white
-            '
+            "
           >
             <BiSearch size={18} />
           </div>

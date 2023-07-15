@@ -6,7 +6,8 @@ import { CldUploadWidget } from 'next-cloudinary'
 import { TbPhotoPlus } from 'react-icons/tb'
 
 declare global {
-  var cloudinary: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, no-var
+  var cloudinary: any
 }
 
 interface IImageUploadProps {
@@ -14,20 +15,20 @@ interface IImageUploadProps {
   value: string
 }
 
-const ImageUpload: React.FC<IImageUploadProps> = ({
-  onChange,
-  value
-}) => {
-  const handleUpload = useCallback((result: any) => {
-    onChange(result.info.secure_url)
-  }, [onChange])
+const ImageUpload: React.FC<IImageUploadProps> = ({ onChange, value }) => {
+  const handleUpload = useCallback(
+    (result: any) => {
+      onChange(result.info.secure_url)
+    },
+    [onChange],
+  )
 
   return (
     <CldUploadWidget
       onUpload={handleUpload}
       uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET_KEY}
       options={{
-        maxFiles: 1
+        maxFiles: 1,
       }}
     >
       {({ open }) => {
@@ -39,7 +40,7 @@ const ImageUpload: React.FC<IImageUploadProps> = ({
               }
               open()
             }}
-            className='
+            className="
               relative
               cursor-pointer
               hover:opacity-70
@@ -54,20 +55,16 @@ const ImageUpload: React.FC<IImageUploadProps> = ({
               items-center
               gap-4
               text-neutral-600
-            '
+            "
           >
-            <TbPhotoPlus size={50}/>
-            <div className='font-semibold text-lg'>
-              Click to upload
-            </div>
+            <TbPhotoPlus size={50} />
+            <div className="font-semibold text-lg">Click to upload</div>
             {value && (
-              <div
-                className='absolute inset-0 w-full h-full'
-              >
-                <Image 
-                  alt='upload'
+              <div className="absolute inset-0 w-full h-full">
+                <Image
+                  alt="upload"
                   fill
-                  style={{ objectFit: 'cover'}}
+                  style={{ objectFit: 'cover' }}
                   src={value}
                 />
               </div>

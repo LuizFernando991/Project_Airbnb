@@ -13,7 +13,7 @@ const CategoryInput: React.FC<ICategoryInputProps> = ({
   icon: Icon,
   label,
   selected,
-  onClick
+  onClick,
 }) => {
   return (
     <div
@@ -32,9 +32,7 @@ const CategoryInput: React.FC<ICategoryInputProps> = ({
       `}
     >
       <Icon size={30} />
-      <div className='font-semibold'>
-        {label}
-      </div>
+      <div className="font-semibold">{label}</div>
     </div>
   )
 }

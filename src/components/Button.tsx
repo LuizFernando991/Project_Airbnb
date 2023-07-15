@@ -1,6 +1,6 @@
-'use client' //Don't import server components on clients components
+'use client' // Don't import server components on clients components
 
-import { IconType } from "react-icons"
+import { IconType } from 'react-icons'
 
 interface IButtonProps {
   label: string
@@ -17,7 +17,7 @@ const Button: React.FC<IButtonProps> = ({
   disabled,
   outline,
   small,
-  icon: Icon
+  icon: Icon,
 }) => {
   return (
     <button
@@ -41,12 +41,7 @@ const Button: React.FC<IButtonProps> = ({
         ${small ? 'border-[1px]' : 'border-2'}
       `}
     >
-      {Icon && (
-        <Icon
-          size={24}
-          className='absolute left-4 top-3'
-        />
-      )}
+      {Icon && <Icon size={24} className="absolute left-4 top-3" />}
       {label}
     </button>
   )

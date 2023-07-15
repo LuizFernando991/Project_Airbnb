@@ -15,16 +15,14 @@ interface IUserMenuProps {
   currentUser?: SafeUser | null
 }
 
-const UserMenu: React.FC<IUserMenuProps> = ({
-  currentUser
-}) => {
+const UserMenu: React.FC<IUserMenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false)
   const rentModel = useRentModel()
   const registerModal = useRegisterModal()
   const loginModal = useLoginModal()
 
   const toggleOpenMenu = useCallback(() => {
-    setIsOpen(value => !value)
+    setIsOpen((value) => !value)
   }, [])
 
   const onRent = useCallback(() => {
@@ -37,11 +35,11 @@ const UserMenu: React.FC<IUserMenuProps> = ({
   }, [loginModal, rentModel, currentUser])
 
   return (
-    <div className='relative'>
-      <div className='flex flex-row items-center gap-3'>
+    <div className="relative">
+      <div className="flex flex-row items-center gap-3">
         <div
           onClick={onRent}
-          className='
+          className="
             hidden
             md:block
             text-sm
@@ -52,13 +50,13 @@ const UserMenu: React.FC<IUserMenuProps> = ({
             hover:bg-neutral-100
             transition
             cursor-pointer
-          '
+          "
         >
           Airbnb your home
         </div>
         <div
           onClick={toggleOpenMenu}
-          className='
+          className="
            p-4
            md:py-1
            md:px-2
@@ -72,17 +70,17 @@ const UserMenu: React.FC<IUserMenuProps> = ({
            cursor-pointer
            hover:shadow-md
            transition
-          '
+          "
         >
           <AiOutlineMenu />
-          <div className='hidden md:block'>
-            <Avatar src={currentUser?.image}/>
+          <div className="hidden md:block">
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
       {isOpen && (
         <div
-          className='
+          className="
             absolute
             rounded-xl
             shadow-md
@@ -93,25 +91,27 @@ const UserMenu: React.FC<IUserMenuProps> = ({
             right-0
             top-10
             text-sm
-          '
+          "
         >
-          <div className='flex flex-col cursor-pointer'>
-              {currentUser ? (
-                <>
-                  <MenuItem onClick={() => {}} label='My trips' />
-                  <MenuItem onClick={() => {}} label='My favorites' />
-                  <MenuItem onClick={() => {}} label='My reservations' />
-                  <MenuItem onClick={() => rentModel.onOpen()} label='Airbnb my home' />
-                  <hr />
-                  <MenuItem onClick={() => signOut()} label='Logout' />
-                </>
-              ) : (
-                <>
-                  <MenuItem onClick={loginModal.onOpen} label='Login' />
-                  <MenuItem onClick={registerModal.onOpen} label='Sing up' /> 
-                </>
-              )}
-              
+          <div className="flex flex-col cursor-pointer">
+            {currentUser ? (
+              <>
+                <MenuItem onClick={() => {}} label="My trips" />
+                <MenuItem onClick={() => {}} label="My favorites" />
+                <MenuItem onClick={() => {}} label="My reservations" />
+                <MenuItem
+                  onClick={() => rentModel.onOpen()}
+                  label="Airbnb my home"
+                />
+                <hr />
+                <MenuItem onClick={() => signOut()} label="Logout" />
+              </>
+            ) : (
+              <>
+                <MenuItem onClick={loginModal.onOpen} label="Login" />
+                <MenuItem onClick={registerModal.onOpen} label="Sing up" />
+              </>
+            )}
           </div>
         </div>
       )}

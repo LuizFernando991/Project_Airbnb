@@ -14,9 +14,8 @@ const Counter: React.FC<ICounterProps> = ({
   title,
   subtitle,
   value,
-  onChange
+  onChange,
 }) => {
-
   const onAdd = useCallback(() => {
     onChange(value + 1)
   }, [value, onChange])
@@ -28,23 +27,16 @@ const Counter: React.FC<ICounterProps> = ({
     onChange(value - 1)
   }, [value, onChange])
 
-
   return (
-    <div
-      className='flex flex-row items-center justify-between'
-    >
-      <div className='flex flex-col'>
-        <div className='font-medium'>
-          {title}
-        </div>
-        <div className='font-light text-gray-600'>
-          {subtitle}
-        </div>
+    <div className="flex flex-row items-center justify-between">
+      <div className="flex flex-col">
+        <div className="font-medium">{title}</div>
+        <div className="font-light text-gray-600">{subtitle}</div>
       </div>
-      <div className='flex flex-row items-center gap-4'>
+      <div className="flex flex-row items-center gap-4">
         <button
           onClick={onReduce}
-          className='
+          className="
             w-10
             h-10
             rounded-full
@@ -57,16 +49,16 @@ const Counter: React.FC<ICounterProps> = ({
             cursor-pointer
             hover:opacity-80
             transition
-          '
+          "
         >
           <AiOutlineMinus />
         </button>
-        <div className='font-light text-xl text-neutral-600 select-none'>
+        <div className="font-light text-xl text-neutral-600 select-none">
           {value}
         </div>
         <button
           onClick={onAdd}
-          className='
+          className="
             w-10
             h-10
             rounded-full
@@ -79,7 +71,7 @@ const Counter: React.FC<ICounterProps> = ({
             cursor-pointer
             hover:opacity-80
             transition
-          '
+          "
         >
           <AiOutlinePlus />
         </button>

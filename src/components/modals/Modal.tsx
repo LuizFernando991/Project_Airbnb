@@ -31,10 +31,9 @@ const Modal: React.FC<IModalProps> = ({
 }) => {
   const [showModal, setShowModal] = useState(isOpen)
 
-  useEffect(()=> {
+  useEffect(() => {
     setShowModal(isOpen)
   }, [isOpen])
-
 
   const handleClose = useCallback(() => {
     if (disabled) {
@@ -42,12 +41,11 @@ const Modal: React.FC<IModalProps> = ({
     }
 
     setShowModal(false)
-    
-    //Animation time
+
+    // Animation time
     setTimeout(() => {
       onClose()
     }, 300)
-
   }, [disabled, onClose])
 
   const handleSubmit = useCallback(() => {
@@ -62,7 +60,7 @@ const Modal: React.FC<IModalProps> = ({
     if (disabled || !secondaryAction) {
       return
     }
-    
+
     secondaryAction()
   }, [disabled, secondaryAction])
 
@@ -73,7 +71,7 @@ const Modal: React.FC<IModalProps> = ({
   return (
     <>
       <div
-        className='
+        className="
           flex
           justify-center
           items-center
@@ -84,10 +82,10 @@ const Modal: React.FC<IModalProps> = ({
           z-50
           outline-none
           bg-neutral-800/70
-        '
+        "
       >
-        <div 
-          className='
+        <div
+          className="
             relative
             w-full
             md:w-4/6
@@ -98,7 +96,7 @@ const Modal: React.FC<IModalProps> = ({
             h-full
             lg:h-auto
             md:h-auto
-          '
+          "
         >
           {/* CONTENT */}
           <div
@@ -111,7 +109,7 @@ const Modal: React.FC<IModalProps> = ({
             `}
           >
             <div
-              className='
+              className="
                 translate
                 h-full
                 lg:h-auto
@@ -126,11 +124,11 @@ const Modal: React.FC<IModalProps> = ({
                 bg-white
                 outline-none
                 focus-outline-none
-              '
+              "
             >
               {/* HEADER */}
               <div
-                className='
+                className="
                   flex
                   items-center
                   p-6
@@ -138,44 +136,42 @@ const Modal: React.FC<IModalProps> = ({
                   justify-center
                   relative
                   border-p-[1px]
-                '
+                "
               >
                 <button
                   onClick={handleClose}
-                  className='
+                  className="
                     p-1
                     border-0
                     hover:opacity-70
                     transition
                     absolute
                     left-9
-                  '
+                  "
                 >
                   <IoMdClose size={18} />
                 </button>
-                <div 
-                  className='
+                <div
+                  className="
                     text-lg
                     font-semibold
-                  '
+                  "
                 >
                   {title}
                 </div>
               </div>
               {/* BODY */}
-              <div className='relative p-6 flex-auto'>
-                {body}
-              </div>
+              <div className="relative p-6 flex-auto">{body}</div>
               {/* FOOTER */}
-              <div className='flex flex-col gap-2 p-6'>
-                <div 
-                  className='
+              <div className="flex flex-col gap-2 p-6">
+                <div
+                  className="
                     flex
                     flex-row
                     items-center
                     gap-4
                     w-full
-                  '
+                  "
                 >
                   {secondaryAction && secondaryActionLabel && (
                     <Button
@@ -185,7 +181,7 @@ const Modal: React.FC<IModalProps> = ({
                       onClick={handleSecondaryAction}
                     />
                   )}
-                  
+
                   <Button
                     label={actionLabel}
                     disabled={disabled}

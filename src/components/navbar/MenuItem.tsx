@@ -5,20 +5,17 @@ interface IMenuItemProps {
   label: string
 }
 
-const MenuItem: React.FC<IMenuItemProps> = ({
-  onClick,
-  label
-}) => {
+const MenuItem: React.FC<IMenuItemProps> = ({ onClick, label }) => {
   return (
     <div
       onClick={onClick}
-      className='
+      className="
         px-4
         py-3
         hover:bg-neutral-100
         transition
         font-semibold
-      '
+      "
     >
       {label}
     </div>
