@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
-import { Listing, Reservation } from '@prisma/client'
+import { Reservation } from '@prisma/client'
 import { format } from 'date-fns'
 import { SafeUser, safeListing } from '@/types'
 import useCountries from '@/hooks/useCountries'
