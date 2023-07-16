@@ -10,9 +10,8 @@ import ListingInfo from '@/components/listings/ListingInfo'
 import ListingReservation from '@/components/listings/ListingReservation'
 import { differenceInCalendarDays, eachDayOfInterval } from 'date-fns'
 import { toast } from 'react-hot-toast'
-import { SafeUser, safeListing } from '@/types'
+import { SafeUser, safeListing, safeReservation } from '@/types'
 import { categories } from '@/helpers/categorieslist'
-import { Reservation } from '@prisma/client'
 import { Range } from 'react-date-range'
 
 const initialDateRange = {
@@ -22,7 +21,7 @@ const initialDateRange = {
 }
 
 interface IListingClientProps {
-  reservations?: Reservation[]
+  reservations?: safeReservation[]
   listing: safeListing & {
     user: SafeUser
   }
@@ -64,7 +63,6 @@ const ListingClient: React.FC<IListingClientProps> = ({
 
     axios
       .post('/api/reservations', {
-        totalPrice,
         startDate: dateRange.startDate,
         endDate: dateRange.endDate,
         listingId: listing?.id,
@@ -81,7 +79,7 @@ const ListingClient: React.FC<IListingClientProps> = ({
       .finally(() => {
         setIsLoading(false)
       })
-  }, [totalPrice, dateRange, listing, router, currentUser, loginModal])
+  }, [dateRange, listing, router, currentUser, loginModal])
 
   const disabledDates = useMemo(() => {
     let dates: Date[] = []
