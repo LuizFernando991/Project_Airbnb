@@ -14,7 +14,6 @@ interface ICategoryBoxProps {
 
 const CategoryBox: React.FC<ICategoryBoxProps> = ({
   label,
-  description,
   selected,
   icon: Icon,
 }) => {
@@ -29,6 +28,7 @@ const CategoryBox: React.FC<ICategoryBoxProps> = ({
       currentQuery = queryString.parse(params.toString()) // to not remove all params
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const updatedQuery: any = {
       ...currentQuery,
       category: label,

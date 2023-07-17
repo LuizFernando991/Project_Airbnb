@@ -66,9 +66,11 @@ const RentModal: React.FC = () => {
         ssr: false,
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [location],
   )
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldValidate: true,

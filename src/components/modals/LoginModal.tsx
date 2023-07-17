@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import { signIn, signOut } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Modal from './Modal'
 import Heading from '../Heading'
@@ -25,7 +25,6 @@ const LoginModal: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
   } = useForm<FieldValues>({
     defaultValues: {
       email: '',
