@@ -38,6 +38,7 @@ const RegisterModal: React.FC = () => {
       .post('/api/register', data) // api is a route that is in app folder
       .then(() => {
         registerModal.onClose()
+        loginModal.onOpen()
       })
       // eslint-disable-next-line @typescript-eslint/no-unused-vars, n/handle-callback-err
       .catch((error) => {

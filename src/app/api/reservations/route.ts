@@ -27,7 +27,10 @@ export async function POST(request: Request) {
     return NextResponse.error()
   }
 
-  const dayCount = differenceInCalendarDays(endDate, startDate)
+  const dayCount = differenceInCalendarDays(
+    new Date(endDate),
+    new Date(startDate),
+  )
 
   const totalPrice = dayCount ? dayCount * listing.price : listing.price
 
