@@ -7,10 +7,7 @@ interface IParams {
   listingId?: string
 }
 
-export async function POST(
-  request: NextResponse,
-  { params }: { params: IParams },
-) {
+export async function POST(request: Request, { params }: { params: IParams }) {
   const currentUser = await getCurrentUser()
 
   if (!currentUser) {
@@ -53,7 +50,7 @@ export async function POST(
 }
 
 export async function DELETE(
-  request: NextResponse,
+  request: Request,
   { params }: { params: IParams },
 ) {
   const currentUser = await getCurrentUser()
