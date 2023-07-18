@@ -64,9 +64,11 @@ const Input: React.FC<IIpuntProps> = ({
         `}
       />
       <label
+        htmlFor={id}
         className={`
           absolute
           text-md
+          cursor-text
           duration-150
           transform
           -translate-y-3
